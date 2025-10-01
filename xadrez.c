@@ -1,89 +1,72 @@
 #include <stdio.h>
 
-int main()
-{
-    //Inicio do desafio nivel novato
-
-    // Declaração das variáveis para controlar os laços de repetição.
-    int torre;      // Variável de controle para o movimento da Torre.
-    int rainha = 0; // Variável de controle para o movimento da Rainha.
-    int bispo = 0;  // Variável de controle para o movimento do Bispo.
-    int cavalow = 0; // Move-se duas casas para baixo e uma casa para esquerda
-    int cavalowh = 0; // Move-se duas casas para baixo e uma casa para esquerda
+void moveTorre(int casas) {
+    if (casas > 0) {
+        printf("Direita\n");
+        moveTorre(casas - 1);
+    }
+}
 
 
-    // --- Movimento da Torre ---
-    // Simula o movimento da Torre por 5 casas para a direita usando um loop 'for'.
-    printf("Torre\n");
-    for (torre = 0; torre < 5; torre++)
-    {
+void moveRainha(int casas) {
+    if (casas > 0) {
+        printf("Esquerda\n");
+        moveRainha(casas - 1);
+    }
+}
+
+
+void moveBispo(int casas) {
+
+    if (casas > 0) {
+        
+        for (int v_move = 0; v_move < 1; v_move++) {
+            printf("Cima\n");
+
+            for (int h_move = 0; h_move < 1; h_move++) {
+                printf("Direita\n");
+            }
+        }
+
+        moveBispo(casas - 1);
+    }
+}
+
+
+void moveCavalo() {
+
+    for (int i = 0; i < 1; i++) {
+
+        for (int passo_vertical = 0; passo_vertical < 2; passo_vertical++) {
+            printf("Cima\n");
+        }
+
         printf("Direita\n");
     }
+}
 
-    // --- Movimento da Rainha ---
-    // Simula o movimento da Rainha por 8 casas para a esquerda usando um loop 'do-while'.
-    printf("\nRainha\n"); // Adicionei um \n para separar visualmente a saída
-    do
-    {
-        printf("Esquerda\n");
-        rainha++;
-    } while (rainha < 8);
 
-    // --- Movimento do Bispo ---
-    // Simula o movimento do Bispo por 5 casas na diagonal (cima, direita) usando um loop 'while'.
-    printf("\nBispo\n"); // Adicionei um \n para separar visualmente a saída
-    while (bispo < 5)
-    {
-        printf("Cima, direita\n");
-        bispo++;
-    }
- //Fim do desafio nivel novato
+int main()
+{
+ // --- Função Principal ---
+// O programa começa a ser executado aqui.
 
-     //Desafio aventureiro
-    //---- For aninhado inicio ----
-    /*
-    printf("Cavalo FOR \n");
-    for (int i = 0; i < 1; i++)
-    {
-        for (int passo_vertical = 0; passo_vertical < 2; passo_vertical++)
-        {
-            printf("Baixo\n");
-        }
-        printf("Esquerda\n");
-    }
-*/ 
-    //---- For aninhado fim ----
+    // --- Movimento da Torre (com Recursividade) ---
+    printf("--- Torre ---\n");
+    moveTorre(5); 
 
-    //---- While aninhado inicio ----
-   /*     printf("Cavalo WHILE\n");
+    // --- Movimento da Rainha (com Recursividade) ---
+    printf("\n--- Rainha ---\n"); 
+    moveRainha(8); 
 
-        while (cavalow < 1)
-        {   
-            while (cavalowh < 2)
-        {
-            printf("Baixo\n");
-            cavalowh++;
-        }
-        printf("Esquerda\n");
-        cavalow++;
-        } 
-        
-     */   
-    //---- While aninhado fim ----
+    // --- Movimento do Bispo (com Recursividade) ---
+    printf("\n--- Bispo ---\n");
+    moveBispo(5); 
 
-    //--- While por fora e for por dentro inicio ---
-        printf("Cavalo While for\n");
-        while (cavalow < 1)
-        {
-        for (cavalowh = 0; cavalowh < 2; cavalowh++)
-        {
-            printf("Baixo\n");
-        }
-        printf("Esquerda\n");
-        cavalow++;
-        } 
+    // --- Movimento do Cavalo (com Loops Aninhados) ---
+    printf("\n--- Cavalo ---\n");
+    moveCavalo(); 
 
- //--- While por fora e for por dentro fim ---
-
+     
     return 0;
 }
